@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+ 
+        canvas{
+            background:#9AA4FF;
+        }
+ 
+    </style>
+</head>
+<body>
+<!--<h3>canvas画布：绘制动画——吃豆人</h3>-->
+ 		<!--练习： 画一个小脸 每隔一秒张着嘴闭着嘴-->
+
+<canvas id="HuaBu">
+	您的浏览器不支持canvas画布
+</canvas>
+ 
+ 
+<script src="js/jquery-1.11.1.js"></script>
+<script>
+ 
+    var w=600;
+    var h=400;
+ 
+    HuaBu.width=w;     //画布的宽
+    HuaBu.height=h;    //画布的宽
+ 
+    //创建画布
+    var ctx=HuaBu.getContext("2d");
+ 
+    openMouth();
+   // closeMouth();
+ 
+    var isOpen=true;    //是否处于张嘴状态
+    setInterval(function () {
+        if(isOpen){
+ 
+            closeMouth();
+            isOpen=false;
+        }else{
+            ctx.clearRect(0,0,800,400);    //清除画布
+            openMouth();
+            isOpen=true;
+        }
+    },1000);
+ 
+ 
+    //吃豆人张嘴
+    function openMouth() {
+        //外围轮廓：半圆环+斜线到圆心+闭合
+        ctx.beginPath();
+        ctx.arc(300,200,110,Math.PI/4,7*Math.PI/4);
+ 
+        ctx.lineTo(300,200);
+        ctx.closePath();
+        ctx.fillStyle='#fea';
+        ctx.fill();
+        ctx.stroke();
+ 
+
+ 
+ 
+        //眼睛的外框
+ 
+        ctx.beginPath();
+        ctx.arc(300,150,25,0,2*Math.PI);
+        ctx.stroke();
+        ctx.fillStyle='#38f';
+        ctx.fill();
+ 
+ 
+ 
+        //两个眼神光
+ 
+        ctx.beginPath();
+        ctx.arc(312,140,5,0,2*Math.PI);
+        ctx.arc(306,131,3,0,2*Math.PI);
+        ctx.fillStyle='#FFFFFF';
+        ctx.fill();
+ 
+ 
+ 
+    }
+    
+    //吃豆人闭嘴
+    function closeMouth() {
+        //外围轮廓：圆环+斜线到圆心+闭合
+        ctx.beginPath();
+        ctx.arc(300,200,110,0,2*Math.PI);
+        ctx.closePath();
+        ctx.lineTo(300,200);
+        ctx.fillStyle='#fea';
+        ctx.fill();
+        ctx.stroke();
+ 
+        //眼睛的外框
+ 
+        ctx.beginPath();
+        ctx.arc(300,150,25,0,2*Math.PI);
+        ctx.stroke();
+        ctx.fillStyle='#38f';
+        ctx.fill();
+ 
+ 
+ 
+        //两个眼神光
+ 
+        ctx.beginPath();
+        ctx.arc(312,140,5,0,2*Math.PI);
+        ctx.arc(306,131,3,0,2*Math.PI);
+        ctx.fillStyle='#fff';
+        ctx.fill();
+ 
+ 
+ 
+    }
+ 
+ 
+ 
+ 
+ 
+</script>
+ 
+ 
+</body>
+</html>
